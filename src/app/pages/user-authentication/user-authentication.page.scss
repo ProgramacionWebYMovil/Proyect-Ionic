@@ -1,0 +1,49 @@
+/* Estilos para el formulario */
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10vh;
+  max-width: 80vw; /* Ancho máximo */
+  margin: 0 auto; /* Centrado horizontal */
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 2vh;
+  width: 100%;
+}
+
+label h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5vh;
+}
+
+input {
+  margin-top: 0.5vh;
+  padding: 1.2vh 1vw;
+  border-radius: 0.4vh;
+  border: 0.1vh solid #ccc;
+  width: 100%;
+  box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+}
+
+input[type="file"] {
+  padding: 0;
+  margin-top: 1vh;
+}
+
+/* Estilos para la barra de navegación superior */
+
+ion-header {
+  background-color: #fff; /* Color de fondo */
+  border-bottom: 0.1vh solid #ccc; /* Borde inferior */
+}
+
+ion-toolbar {
+  height: 5vh; /* Altura de la barra de herramientas */
+}

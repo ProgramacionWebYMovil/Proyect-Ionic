@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>user-authentication</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">user-authentication</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <input type="file" name="userImag">
+    <label for="name">
+      <h2>Name</h2>
+      <input neme="name" type="text" formControlName="name">
+    </label>
+    <label for="email">
+      <h2>Email</h2>
+      <input name="email" type="email" formControlName="email">
+    </label>
+    <label for="password">
+      <h2>Password</h2>
+      <input name="password" type="password" formControlName="password">
+    </label>
+    <label for="passwordRepeat">
+      <h2>Repeat Password</h2>
+      <input name="passwordRepeat" type="password" formControlName="passwordRepeat">
+    </label>
+    <input type="submit" value="Confirm">
+  </form>
+</ion-content>

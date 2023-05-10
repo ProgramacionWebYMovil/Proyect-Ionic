@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "todo-ionic-10e77": {
+      "hosting": {
+        "app": [
+          "todo-ionic-10e77"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "todo-ionic-10e77"
+  }
+}

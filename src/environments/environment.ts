@@ -7,6 +7,7 @@ export const environment = {
     projectId: 'todo-ionic-10e77',
     appId: '1:27198216413:web:cb7ed3bc1d38109f4f6334',
     storageBucket: 'todo-ionic-10e77.appspot.com',
+    locationId: 'europe-west',
     apiKey: 'AIzaSyDHOWB-Ki5Thx0PBm0ZajjxxYvov0FRimY',
     authDomain: 'todo-ionic-10e77.firebaseapp.com',
     messagingSenderId: '27198216413',
