@@ -11,15 +11,9 @@
     </ion-toolbar>
   </ion-header>
 
-  <h1>Productos</h1>
-  <section id="productos">
-    <app-card *ngFor="let i of [1,2,3,4,5,6,7,8]"></app-card>
+  <h1>Our memes</h1>
+  <section id="memes">
+    <app-card *ngFor="let meme of memes" [meme]="meme"></app-card>
   </section>
-
-
-  <app-paginator></app-paginator>
-
-
-
 
 </ion-content>

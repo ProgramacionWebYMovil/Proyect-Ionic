@@ -9,7 +9,6 @@ import { MasterPageRoutingModule } from './master-routing.module';
 import { MasterPage } from './master.page';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CardComponent } from '../../components/card/card.component';
-import { PaginatorComponent } from '../../components/paginator/paginator.component';
 
 @NgModule({
   imports: [
@@ -21,7 +20,6 @@ import { PaginatorComponent } from '../../components/paginator/paginator.compone
   ],
   declarations: [
     MasterPage,
-    PaginatorComponent,
     CardComponent
   ]
 })
