@@ -14,7 +14,11 @@ const routes: Routes = [
   {
     path: 'authentication',
     loadChildren: () => import('./pages/user-authentication/user-authentication.module').then( m => m.UserAuthenticationPageModule)
+  },  {
+    path: 'user-profile',
+    loadChildren: () => import('./user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   },
+
 ];
 
 
