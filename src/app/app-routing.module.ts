@@ -10,7 +10,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'master',
+    loadChildren: () => import('./master/master.module').then( m => m.MasterPageModule)
   },
+
 ];
 
 @NgModule({
