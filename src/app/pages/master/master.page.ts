@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-master',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MasterPage implements OnInit {
 
-  constructor() { }
+  constructor(private firestoreService:FirestoreService) { }
 
   ngOnInit() {
+    this.firestoreService.uploadDatabase();
   }
 
 }
