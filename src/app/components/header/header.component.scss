@@ -1,0 +1,66 @@
+ion-toolbar.master-section,
+ion-toolbar.user-section {
+  display: none;
+  ion-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  ion-buttons[slot=start] ion-icon {
+    font-size: 1.2rem;
+  }
+}
+
+ion-toolbar.master-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+ion-toolbar.user-section {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-in-out;
+  &.active {
+    max-height: 100vh;
+  }
+}
+
+ion-toolbar.user-section ion-buttons[slot=end] {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  ion-button {
+    font-size: 0.8rem;
+    --padding-start: 0.5rem;
+    --padding-end: 0.5rem;
+  }
+  ion-icon {
+    margin-right: 0.5rem;
+  }
+}
+
+ion-button {
+  --padding-start: 0.5rem;
+  --padding-end: 0.5rem;
+  --border-radius: 0;
+  ion-icon {
+    font-size: 1.2rem;
+    color: white;
+  }
+}
+
+ion-button.active {
+  background-color: red;
+  color: red;
+}
+
+ion-toolbar {
+  --background: red;
+}
