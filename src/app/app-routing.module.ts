@@ -15,6 +15,11 @@ const routes: Routes = [
     path: 'authentication',
     loadChildren: () => import('./pages/user-authentication/user-authentication.module').then( m => m.UserAuthenticationPageModule)
   },
+  {
+    path: 'details/:id',
+    loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
+  },
+
 ];
 
 

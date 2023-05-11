@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Meme } from 'src/app/intefaces/meme';
+import { Meme } from 'src/app/interfaces/meme';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
@@ -22,7 +22,6 @@ export class MasterPage implements OnInit {
   async loadContent(){
     const memesPromise:Promise<Meme[]> = this.firestoreService.readMemes();
     this.memes = await memesPromise;
-    console.log(this.memes);
   }
 
 }

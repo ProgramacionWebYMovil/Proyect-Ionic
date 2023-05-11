@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Meme } from 'src/app/intefaces/meme';
+import { Meme } from 'src/app/interfaces/meme';
 
 @Component({
   selector: 'app-card',
