@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      My App
+      <ion-label class="master-title" routerLink="/master">Master</ion-label>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleUserOptions()">
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <div class="menu-wrapper" [class.visible]="showUserOptions">
+    <div class="menu-items">
+      <ion-button *ngIf="!isUserLoggedIn" routerLink="/login">Iniciar Sesión</ion-button>
+      <ion-button *ngIf="!isUserLoggedIn" routerLink="/register">Crear Cuenta</ion-button>
+      <ion-button *ngIf="isUserLoggedIn">Mis Favoritos</ion-button>
+      <ion-button *ngIf="isUserLoggedIn">Mi Perfil</ion-button>
+      <ion-button *ngIf="isUserLoggedIn">Cerrar Sesión</ion-button>
+    </div>
+  </div>
+</ion-header>

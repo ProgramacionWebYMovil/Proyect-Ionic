@@ -15,8 +15,8 @@ export class MasterPage implements OnInit {
 
   ngOnInit() {
     this.loadContent();
-    
-    
+
+
   }
 
   async loadContent(){
