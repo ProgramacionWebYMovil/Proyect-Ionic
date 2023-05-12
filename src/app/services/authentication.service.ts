@@ -7,6 +7,7 @@ import { updateProfile } from 'firebase/auth';
 })
 export class AuthenticationService {
 
+
   constructor(private auth:Auth) { }
 
   async registerUserEmail(name: string, email: string, password: string) {
@@ -45,16 +46,20 @@ export class AuthenticationService {
     return this.auth.currentUser?.email as string;
   }
 
+  getCurrentPhotoURL(){
+    return this.auth.currentUser?.photoURL as string;
+  }
+
   updateName(name:string){
     updateProfile(this.auth.currentUser!, {
       displayName:name
-    })
+    });
   }
 
   updatePhotoURL(photoURL:string){
     updateProfile(this.auth.currentUser!,{
       photoURL:photoURL
-    })
+    });
   }
 
 }

@@ -1,8 +1,9 @@
 export interface Comment {
     owner:string,
-    uidComment:string,
+    idComment:string,
     content:string,
     like:number,
-    unlike:number,
-    date:number
+    dislike:number,
+    date:number,
+    imageOwner:string
 }

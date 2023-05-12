@@ -1,8 +1,16 @@
 
 <div>
-  <h2>{{comment.owner}}</h2>
-  <p>{{comment.content}}</p>
   <div>
+    <img [src]="comment.imageOwner">
+    <h2>{{comment.owner}}</h2>
+  </div>
+  
+  <p>{{comment.content}}</p>
+  <div id="down">
     <p>{{comment.date | date:'short' }}</p>
+    <div id="like">
+      <ion-icon name="thumbs-up-outline"></ion-icon>
+      <ion-icon name="thumbs-down-outline"></ion-icon>
+    </div>
   </div>
 </div>
