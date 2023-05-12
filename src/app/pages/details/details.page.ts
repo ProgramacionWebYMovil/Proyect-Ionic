@@ -26,14 +26,14 @@ export class DetailsPage implements OnInit{
     private firestoreService:FirestoreService,
     private activatedRoute:ActivatedRoute,
     private authService:AuthenticationService
-    ) { 
+    ) {
 
   }
 
   async ngOnInit() {
     this.id = this.activatedRoute.snapshot.params['id'];
-    this.loadContent(); 
-    this.uid = this.authService.getCurrentUid();
+    this.loadContent();
+    this.authService.getCurrentUid().subscribe(data => this.uid = data);
     this.displayName = this.authService.getCurrentName();
   }
 
@@ -47,7 +47,7 @@ export class DetailsPage implements OnInit{
   }
 
   submit(option:boolean){
-    
+
     if(option && this.uid!==undefined){
       const comment: Comment = {
         //Cambiar el owner
@@ -62,7 +62,7 @@ export class DetailsPage implements OnInit{
         if(done) this.comments = await this.firestoreService.getMemeCommentsById(this.id);
       });
     }
-    this.commentControl.reset();  
+    this.commentControl.reset();
   }
 
 

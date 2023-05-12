@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { getDownloadURL } from '@angular/fire/storage';
 import { Validators, FormBuilder,ValidatorFn,ValidationErrors, FormGroup } from '@angular/forms';
 import { error, log } from 'console';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { UploadImagesService } from 'src/app/services/upload-image.service';
 
 @Component({
   selector: 'app-user-authentication',
@@ -9,6 +11,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./user-authentication.page.scss'],
 })
 export class UserAuthenticationPage implements OnInit {
+
+  isAlertOpen:boolean = false
 
   private errorTexts = {
     FIELD_REQUIRED:"This field is required",
@@ -23,10 +27,9 @@ export class UserAuthenticationPage implements OnInit {
     password : this.errorTexts.FIELD_REQUIRED,
     passwordRepeat: this.errorTexts.FIELD_REQUIRED
   }
-
-
-
-  avatarImg="https://ionicframework.com/docs/img/demos/avatar.svg"
+  private defaultImage = "https://ionicframework.com/docs/img/demos/avatar.svg";
+  private imgFile?:File;
+  avatarImg:any=this.defaultImage
   private passwordPattern  =new RegExp("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$")
 
 
@@ -39,7 +42,8 @@ export class UserAuthenticationPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authenticationSearvice:AuthenticationService
+    private authenticationSearvice:AuthenticationService,
+    private uploadImageService:UploadImagesService
     ) { }
 
 
@@ -48,13 +52,21 @@ export class UserAuthenticationPage implements OnInit {
   }
 
   onSubmit(){
+
+    if(this.avatarImg === this.defaultImage) {this.setOpen(true);return}
     const userData = this.form.value;
     Object.values(userData).forEach(prop => {
       let property = prop as keyof(typeof userData);
       if(!userData[property]) userData[property] = "";
     })
+
     this.authenticationSearvice.registerUserEmail(userData.name!,userData.email!,userData.password!)
-    .then(response => console.log(response))
+    .then(async response => {
+      console.log(response);
+      this.uploadImageService.onFileUpload(this.imgFile!).then(url =>
+        this.authenticationSearvice.updatePhotoURL(url)
+        );
+    })
     .catch(error => console.log(error));
 
   }
@@ -108,5 +120,19 @@ export class UserAuthenticationPage implements OnInit {
     };
     this.form.controls.passwordRepeat
     .setErrors(value);
+  }
+
+  uploadImage(event: any) {
+    this.imgFile = event.target.files[0];
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.avatarImg = reader.result;
+    };
+  }
+
+  setOpen(value:boolean){
+    this.isAlertOpen = value;
   }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { updateProfile } from 'firebase/auth';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AuthenticationService {
     return createUserWithEmailAndPassword(this.auth, email, password)
       .then(async () => {
         console.assert("El usuario " + this.auth.currentUser?.uid + " se ha registrado");
+        this.updateName(name);
         return Promise.resolve(true);
       })
       .catch((error) => {
@@ -33,8 +35,12 @@ export class AuthenticationService {
       });
   }
 
-  getCurrentUid(){
-    return this.auth.currentUser?.uid as string;
+  getCurrentUid(): Observable<string>{
+    return new Observable(subscriber => {
+      onAuthStateChanged(this.auth, user => {
+        subscriber.next(user?.uid)
+      })
+    })
   }
 
   getCurrentName(){
