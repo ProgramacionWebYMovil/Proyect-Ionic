@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { updateProfile } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,30 @@ export class AuthenticationService {
         console.error(error, "El usuario no ha podido iniciar sesión");
         return Promise.resolve(false);
       });
+  }
+
+  getCurrentUid(){
+    return this.auth.currentUser?.uid as string;
+  }
+
+  getCurrentName(){
+    return this.auth.currentUser?.displayName as string;
+  }
+
+  getCurrentEmail(){
+    return this.auth.currentUser?.email as string;
+  }
+
+  updateName(name:string){
+    updateProfile(this.auth.currentUser!, {
+      displayName:name
+    })
+  }
+
+  updatePhotoURL(photoURL:string){
+    updateProfile(this.auth.currentUser!,{
+      photoURL:photoURL
+    })
   }
 
 }
