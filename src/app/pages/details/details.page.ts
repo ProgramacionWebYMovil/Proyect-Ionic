@@ -52,13 +52,14 @@ export class DetailsPage implements OnInit{
       const comment: Comment = {
         //Cambiar el owner
         owner:this.displayName,
-        uidComment:this.authService.getCurrentEmail()+Date.now(),
+        idComment:this.authService.getCurrentEmail()+Date.now(),
         content:this.commentControl.value as string,
         like:0,
-        unlike:0,
-        date:Date.now()
+        dislike:0,
+        date:Date.now(),
+        imageOwner:this.authService.getCurrentPhotoURL()
       };
-      this.firestoreService.addComment(this.id,comment,comment.uidComment).then(async done =>{
+      this.firestoreService.addComment(this.id,comment,comment.idComment).then(async done =>{
         if(done) this.comments = await this.firestoreService.getMemeCommentsById(this.id);
       });
     }

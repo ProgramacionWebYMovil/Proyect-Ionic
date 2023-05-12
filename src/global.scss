@@ -26,5 +26,5 @@
 @import "@ionic/angular/css/flex-utils.css";
 
 ion-content{
-  background: linear-gradient(to bottom, #100E40, #50126b);
+  --background: linear-gradient(to bottom, #100E40, #50126b) !important;
 }
