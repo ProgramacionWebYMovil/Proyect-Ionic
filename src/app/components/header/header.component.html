@@ -5,27 +5,24 @@
         <ion-icon name="home-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>My App</ion-title>
+    <ion-title>
+      My App
+      <ion-label class="master-title" routerLink="/master">Master</ion-label>
+    </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="toggleUserOptions()">
-        <ion-icon name="person"></ion-icon>
+        <ion-icon name="person-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar class="master-section">
-    <ion-buttons slot="start">
-      <ion-button routerLink="/master">
-        <ion-icon name="menu-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Master</ion-title>
-  </ion-toolbar>
-  <div class="user-options" *ngIf="showUserOptions">
-    <ion-button *ngIf="!isUserLoggedIn" routerLink="/login">Iniciar Sesión</ion-button>
-    <ion-button *ngIf="!isUserLoggedIn" routerLink="/register">Crear Cuenta</ion-button>
-    <ion-button *ngIf="isUserLoggedIn">Mis Favoritos</ion-button>
-    <ion-button *ngIf="isUserLoggedIn">Mi Perfil</ion-button>
-    <ion-button *ngIf="isUserLoggedIn">Cerrar Sesión</ion-button>
+
+  <div class="menu-wrapper" [class.visible]="showUserOptions">
+    <div class="menu-items">
+      <ion-button *ngIf="!isUserLoggedIn" routerLink="/login">Iniciar Sesión</ion-button>
+      <ion-button *ngIf="!isUserLoggedIn" routerLink="/register">Crear Cuenta</ion-button>
+      <ion-button *ngIf="isUserLoggedIn">Mis Favoritos</ion-button>
+      <ion-button *ngIf="isUserLoggedIn">Mi Perfil</ion-button>
+      <ion-button *ngIf="isUserLoggedIn">Cerrar Sesión</ion-button>
+    </div>
   </div>
 </ion-header>
-

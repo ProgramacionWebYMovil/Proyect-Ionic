@@ -1,66 +1,53 @@
-ion-toolbar.master-section,
-ion-toolbar.user-section {
-  display: none;
+ion-header {
+  ion-toolbar {
+    --background: #FFFFFF;
+    --color: #000000;
+    --border-color: #DDDDDD;
+  }
+
   ion-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-  }
-  ion-buttons[slot=start] ion-icon {
-    font-size: 1.2rem;
-  }
-}
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
 
-ion-toolbar.master-section {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 10;
-}
-
-ion-toolbar.user-section {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  z-index: 10;
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.5s ease-in-out;
-  &.active {
-    max-height: 100vh;
+    .master-title {
+      margin-left: 10px;
+      font-size: 14px;
+      text-decoration: underline;
+    }
   }
-}
 
-ion-toolbar.user-section ion-buttons[slot=end] {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  ion-button {
-    font-size: 0.8rem;
-    --padding-start: 0.5rem;
-    --padding-end: 0.5rem;
+  .menu-wrapper {
+    position: fixed;
+    top: 56px;
+    left: -280px;
+    width: 280px;
+    height: calc(100% - 56px);
+    background: #FFFFFF;
+    z-index: 10;
+    transition: left 0.2s ease-in-out;
+
+    &.visible {
+      left: 0;
+    }
   }
-  ion-icon {
-    margin-right: 0.5rem;
+
+
+  .menu-items {
+    padding-top: 2em;
+
+    ion-button {
+      display: block;
+      width: 60%;
+      text-align: left;
+      margin-bottom: 10px;
+      font-size: 18px;
+      --color: #000000;
+
+      &.danger {
+        --color: #FF0000;
+      }
+    }
   }
-}
-
-ion-button {
-  --padding-start: 0.5rem;
-  --padding-end: 0.5rem;
-  --border-radius: 0;
-  ion-icon {
-    font-size: 1.2rem;
-    color: white;
-  }
-}
-
-ion-button.active {
-  background-color: red;
-  color: red;
-}
-
-ion-toolbar {
-  --background: red;
 }
