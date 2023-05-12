@@ -9,9 +9,6 @@ import { Router } from '@angular/router';
 export class HomePage {
 
 
-
-
-
   constructor(private router:Router) {
     this.router.navigate(['/authentication'])
   }
