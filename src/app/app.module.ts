@@ -12,8 +12,6 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 

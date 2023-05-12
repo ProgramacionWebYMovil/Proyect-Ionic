@@ -24,10 +24,10 @@ export class UploadImagesService {
   constructor(
     private storage:Storage,
     private auth:AuthenticationService
-  ) {
+  ) {}
 
-    
 
+/*
     this.auth.getUidWithPromise().then(response =>{
       this.IMAGE_STORAGE = `userImages/${response}/`;
       this.subject.next(true);
@@ -96,5 +96,5 @@ export class UploadImagesService {
     }
     this.overlayFirestoreService.writeOverlay({...a},this.customOverlayService.overlay.urlID)
   }
-
+*/
 }

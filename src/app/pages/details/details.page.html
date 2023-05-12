@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">details</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+
+
+    <section *ngIf="meme!==undefined">
+        <div id="title">
+          <h1>{{meme.title}}</h1>
+          <button><ion-icon name="star-outline"></ion-icon></button>
+        </div>
+        <img [src]="meme.url">
+    </section>
+
+    <section>
+      <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
+    </section>
+
+  </div>
+  
+</ion-content>
