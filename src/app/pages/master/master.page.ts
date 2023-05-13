@@ -5,7 +5,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 @Component({
   selector: 'app-master',
   templateUrl: './master.page.html',
-  styleUrls: ['./master.page.scss'],
+  styleUrls: ['./master.page.scss']
 })
 export class MasterPage implements OnInit {
 
@@ -15,8 +15,8 @@ export class MasterPage implements OnInit {
 
   ngOnInit() {
     this.loadContent();
-    
-    
+
+
   }
 
   async loadContent(){
