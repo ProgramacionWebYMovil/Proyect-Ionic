@@ -1,13 +1,19 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-title>
+      MemeApp
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="container">
+    <div class="header">
+      <img src="./assets/logo/logo.png" alt="meme sample">
+      <h1>Welcome to MemeZone</h1>
+      <p>Explore the best memes and have fun with your friends</p>
+      <ion-button expand="block" class="button-85" role="button" routerLink="/master">Explorar</ion-button>
+    </div>
+  </div>
 </ion-content>
+
