@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { updateProfile } from 'firebase/auth';
 import { Observable } from 'rxjs';
 
@@ -34,6 +34,22 @@ export class AuthenticationService {
         console.error(error, "El usuario no ha podido iniciar sesión");
         return Promise.resolve(false);
       });
+  }
+
+  async logOut(){
+    await signOut(this.auth).then(() =>{
+      window.location.href = '/master';
+    }).catch((error) =>{
+      console.log(error);
+    })
+  }
+
+  isLoggedInUser(): Observable<boolean>{
+    return new Observable(subscriber => {
+      onAuthStateChanged(this.auth, user => {
+        subscriber.next(!!user);
+      })
+    })
   }
 
   getCurrentUid(): Observable<string>{

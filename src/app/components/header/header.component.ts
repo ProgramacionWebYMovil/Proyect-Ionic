@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -6,11 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  isUserLoggedIn = false;
+  isUserLoggedIn = this.authentication.isLoggedInUser();
   showUserOptions = false;
+
+  constructor(
+    private authentication:AuthenticationService
+  ) {
+
+  }
 
   toggleUserOptions() {
     this.showUserOptions = !this.showUserOptions;
+  }
+
+  logOut(){
+    this.authentication.logOut();
   }
 }
 

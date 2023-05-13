@@ -18,11 +18,10 @@
 
   <div class="menu-wrapper" [class.visible]="showUserOptions">
     <div class="menu-items">
-      <ion-button *ngIf="!isUserLoggedIn" routerLink="/login">Log In</ion-button>
-      <ion-button *ngIf="!isUserLoggedIn" [routerLink]="['/authentication']">Sign Up</ion-button>
-      <ion-button *ngIf="isUserLoggedIn">My Favourites</ion-button>
-      <ion-button *ngIf="isUserLoggedIn">My Profile</ion-button>
-      <ion-button *ngIf="isUserLoggedIn">Log Out</ion-button>
+      <ion-button *ngIf="(isUserLoggedIn | async)===false" [routerLink]="['/authentication']">Authenticate</ion-button>
+      <ion-button *ngIf="isUserLoggedIn | async">My Favourites</ion-button>
+      <ion-button *ngIf="isUserLoggedIn | async">My Profile</ion-button>
+      <ion-button (click)="logOut();toggleUserOptions()" *ngIf="isUserLoggedIn | async">Log Out</ion-button>
     </div>
   </div>
 </ion-header>
