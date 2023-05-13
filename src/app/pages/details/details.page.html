@@ -30,7 +30,7 @@
       <form>
         <div id="headerForm">
           <ion-avatar>
-            <img src="https://ionicframework.com/docs/img/demos/avatar.svg">
+            <img [src]="photoURL">
           </ion-avatar>
           <!-- Hay que poner el nombre del usuario -->
           <p>Comment as {{displayName}}</p>
@@ -46,8 +46,8 @@
       <p>Please <a routerLink="/authentication">Log In</a> or <a routerLink="/authentication">Create Acount</a> to comment</p>
     </section>
 
-    <section>
-      <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
+    <section id="commentSection">
+      <app-comment *ngFor="let comment of comments" [currentUser]="email" [comment]="comment"></app-comment>
     </section>
   </section>
   

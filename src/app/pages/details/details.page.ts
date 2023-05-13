@@ -18,6 +18,8 @@ export class DetailsPage implements OnInit{
   comments!:Comment[];
   uid!:string;
   displayName!:string;
+  photoURL!:string;
+  email!:string;
 
   commentControl = new FormControl('',Validators.required);
 
@@ -33,8 +35,16 @@ export class DetailsPage implements OnInit{
   async ngOnInit() {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.loadContent();
-    this.authService.getCurrentUid().subscribe(data => this.uid = data);
-    this.displayName = this.authService.getCurrentName();
+    this.authService.getCurrentUid().subscribe(data => {
+      this.uid = data;
+      if(data !== undefined){
+        this.displayName = this.authService.getCurrentName();
+        this.photoURL = this.authService.getCurrentPhotoURL();
+        this.email = this.authService.getCurrentEmail();
+      }
+    });
+    
+    
   }
 
 
@@ -49,13 +59,15 @@ export class DetailsPage implements OnInit{
   submit(option:boolean){
 
     if(option && this.uid!==undefined){
+      
       const comment: Comment = {
         //Cambiar el owner
         owner:this.displayName,
-        idComment:this.authService.getCurrentEmail()+Date.now(),
+        idComment:this.email+Date.now(),
         content:this.commentControl.value as string,
-        like:0,
-        dislike:0,
+        idMeme:this.id,
+        like:[],
+        dislike:[],
         date:Date.now(),
         imageOwner:this.authService.getCurrentPhotoURL()
       };

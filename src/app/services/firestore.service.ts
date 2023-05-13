@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, doc, getDoc, setDoc } from '@angular/fire/firestore';
 import { error, log } from 'console';
-import { getDocs } from 'firebase/firestore';
+import { arrayRemove, arrayUnion, getDocs, updateDoc } from 'firebase/firestore';
 import { Meme } from '../interfaces/meme';
 import { Comment } from '../interfaces/comment';
 
@@ -9,6 +9,7 @@ import { Comment } from '../interfaces/comment';
   providedIn: 'root'
 })
 export class FirestoreService {
+
 
 
   constructor(private firestore:Firestore) { }
@@ -47,6 +48,45 @@ export class FirestoreService {
         return false;
       });
 
+      return true;
+    }
+
+
+    async addlikeToMemeByID(idMeme: number, idComment: string, currentUser: string):Promise<boolean> {
+      const docRef = doc(this.firestore,"Memes","Meme "+idMeme,"Comments",idComment);
+      await updateDoc(docRef,{
+        like:arrayUnion(currentUser)
+      });
+      return true;
+    }
+
+    async getMemeCommentByID(idMeme:number,idComment:string):Promise<Comment>{
+      const docRef = doc(this.firestore,"Memes","Meme "+idMeme,"Comments",idComment);
+      const result = await getDoc(docRef);
+      return result.data() as Comment;
+    }
+
+    async removelikeToMemeByID(idMeme: number, idComment: string, currentUser: string):Promise<boolean> {
+      const docRef = doc(this.firestore,"Memes","Meme "+idMeme,"Comments",idComment);
+      await updateDoc(docRef,{
+        like:arrayRemove(currentUser)
+      });
+      return true;
+    }
+
+    async addDislikeToMemeByID(idMeme: number, idComment: string, currentUser: string):Promise<boolean> {
+      const docRef = doc(this.firestore,"Memes","Meme "+idMeme,"Comments",idComment);
+      await updateDoc(docRef,{
+        dislike:arrayUnion(currentUser)
+      });
+      return true;
+    }
+
+    async removeDislikeToMemeByID(idMeme: number, idComment: string, currentUser: string):Promise<boolean> {
+      const docRef = doc(this.firestore,"Memes","Meme "+idMeme,"Comments",idComment);
+      await updateDoc(docRef,{
+        dislike:arrayRemove(currentUser)
+      });
       return true;
     }
 
