@@ -10,7 +10,6 @@ import { MasterPage } from './master.page';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CardComponent } from '../../components/card/card.component';
 
-import { HeaderComponent } from '../../components/header/header.component';
 
 @NgModule({
   imports: [
@@ -22,8 +21,7 @@ import { HeaderComponent } from '../../components/header/header.component';
   ],
   declarations: [
     MasterPage,
-    CardComponent,
-    HeaderComponent
+    CardComponent
   ]
 })
 export class MasterPageModule {}
