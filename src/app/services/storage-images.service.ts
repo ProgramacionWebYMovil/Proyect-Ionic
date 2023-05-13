@@ -7,9 +7,10 @@ import { AuthenticationService } from './authentication.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UploadImagesService {
+export class StorageImagesService {
 
   private IMAGE_STORAGE?:string;
+  private IMAGE_WHOAREYOU:string ="images/WhoAreYou.jpg";
 
 
   constructor(
@@ -24,6 +25,11 @@ export class UploadImagesService {
     await uploadBytes(imgRef,file)
     .then(response => console.log(response))
     .catch(error => console.log(error));
+    return getDownloadURL(imgRef);
+  }
+
+  getWhoAreYouImage(): Promise<string>{
+    const imgRef = ref(this.storage,this.IMAGE_WHOAREYOU);
     return getDownloadURL(imgRef);
   }
 

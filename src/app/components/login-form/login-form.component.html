@@ -1,0 +1,23 @@
+<div id="who">
+  <img [src]="img |async" alt="">
+</div>
+<form [formGroup]="form" (submit)="onSubmit()">
+  <ion-list class="inputsContainer">
+    <ion-item>
+      <ion-input formControlName="email" errorText="This field is required" label="Email" type="email" name="email" placeholder="email@domain.com" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input formControlName="password" errorText="This field is required" label="Password" type="password" name="password"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button type="submit">CONFIRM</ion-button>
+</form>
+
+<ion-alert
+[isOpen]="isAlertOpen"
+header="Login error"
+message="Incorrect email or password"
+[buttons]="['OK']"
+(didDismiss)="setOpen(false)"
+></ion-alert>

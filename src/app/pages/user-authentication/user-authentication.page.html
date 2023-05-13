@@ -5,38 +5,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="mainContent">
-    <div id="avatar">
-      <input id="inputFile" type="file" accept="image/*" (change)="uploadImage($event)">
-      <img [src]="this.avatarImg">
-    </div>
-     <form [formGroup]="form"(submit)="onSubmit()">
-      <ion-list class="inputsContainer">
-        <ion-item class="ion-touched" >
-          <ion-input formControlName="name" [errorText]="errorTextsForInputs.name" label="Name" type="text"  name="name"></ion-input>
-        </ion-item>
+  <div id="grid-content">
+    <ng-container *ngIf="isLogin;else signup">
+      <app-login-form id="form"></app-login-form>
+    </ng-container>
+    <ng-template #signup>
+      <app-signup-form id="form" ></app-signup-form>
+    </ng-template>
 
-        <ion-item>
-          <ion-input  (keyup)="change($event)" formControlName="email" [errorText]="errorTextsForInputs.email"  label="Email" type="email" name="email" placeholder="email@domain.com" ></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-input (keyup)="change($event)" formControlName="password" [errorText]="errorTextsForInputs.password" label="Password" type="password" name="password"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-input  (keyup)="change($event)"  formControlName="passwordRepeat" [errorText]="errorTextsForInputs.passwordRepeat" label="Repeat password" type="password"  name="passwordRepeat"></ion-input>
-        </ion-item>
-      </ion-list>
-      <ion-button type="submit">CONFIRM</ion-button>
-    </form>
+    <p id="ask">If you already have an account, <a (click)="changeMode()">login here.</a></p>
   </div>
 </ion-content>
-<ion-alert
-  [isOpen]="isAlertOpen"
-  header="Hey you!"
-  subHeader="Image required"
-  message="You must upload a profile picture"
-  [buttons]="['OK']"
-  (didDismiss)="setOpen(false)"
-></ion-alert>

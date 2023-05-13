@@ -1,0 +1,59 @@
+
+#avatar{
+  z-index: 100;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+
+}
+img{
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+#inputFile{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 100;
+  cursor: pointer !important;
+}
+
+form{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+ion-list{
+  background: none;
+}
+ion-item{
+  --background: none;
+  --border-color:#ffffff !important;
+  --highlight-height:5px;
+  --highlight-color-focused: #ff0000;
+  --highlight-color-valid: #6f58d8;
+  --highlight-color-invalid: #ff46be;
+
+}
+ion-input{
+  --background:none;
+  --color:#ffffff;
+
+}
+
+ion-button[type="submit"]{
+  --background: #fff300;
+  --color: #50126b;
+}

@@ -8,6 +8,10 @@ import { IonicModule } from '@ionic/angular';
 import { UserAuthenticationPageRoutingModule } from './user-authentication-routing.module';
 
 import { UserAuthenticationPage } from './user-authentication.page';
+import { SignupFormComponent } from 'src/app/components/signup-form/signup-form.component';
+import { LoginFormComponent } from 'src/app/components/login-form/login-form.component';
+
+
 
 @NgModule({
   imports: [
@@ -17,6 +21,10 @@ import { UserAuthenticationPage } from './user-authentication.page';
     UserAuthenticationPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [UserAuthenticationPage]
+  declarations:[
+    UserAuthenticationPage,
+    SignupFormComponent,
+    LoginFormComponent
+  ]
 })
 export class UserAuthenticationPageModule {}
