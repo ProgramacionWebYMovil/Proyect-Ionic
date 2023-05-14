@@ -8,7 +8,7 @@
 
 <ion-content>
   <ion-card>
-    <img src="{{ photoURL }}" alt="Imagen de Perfil">
+    <img src="{{ photoURL }}" alt="Profile Picture">
     <ion-card-header>
       <ng-container *ngIf="!showInput; else editName">
         <ion-card-title (click)="showInput = true">{{ displayName }}</ion-card-title>
@@ -16,14 +16,14 @@
       <ng-template #editName>
         <ion-item>
           <ion-input [(ngModel)]="nuevoNombre" placeholder="Nuevo Nombre"></ion-input>
-          <ion-button slot="end" (click)="guardarNombre()">Guardar</ion-button>
+          <ion-button slot="end" (click)="guardarNombre()">Save</ion-button>
         </ion-item>
       </ng-template>
       <ion-card-subtitle>{{ email }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <ion-button expand="block" (click)="editarNombre()">Editar Nombre</ion-button>
-      <ion-button expand="block" (click)="editarFoto()">Editar Foto</ion-button>
+      <ion-button expand="block" (click)="editarNombre()">Edit Name</ion-button>
+      <ion-button expand="block" (click)="editarFoto()">Edit Profile Picture</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>
