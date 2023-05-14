@@ -20,7 +20,7 @@
     <div class="menu-items">
       <ion-button *ngIf="(isUserLoggedIn | async)===false" [routerLink]="['/authentication']">Authenticate</ion-button>
       <ion-button *ngIf="isUserLoggedIn | async">My Favourites</ion-button>
-      <ion-button *ngIf="isUserLoggedIn | async">My Profile</ion-button>
+      <ion-button *ngIf="isUserLoggedIn | async" [routerLink]="['/profile']">My Profile</ion-button>
       <ion-button (click)="logOut();toggleUserOptions()" *ngIf="isUserLoggedIn | async">Log Out</ion-button>
     </div>
   </div>
