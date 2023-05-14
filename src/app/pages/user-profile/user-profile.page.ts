@@ -12,6 +12,8 @@ export class UserProfilePage implements OnInit {
   email = '';
   photoURL = '';
   selectedImage: File | null = null;
+  nuevoNombre!: string;
+  showInput = false;
 
   constructor(private authService: AuthenticationService, private storageService: StorageImagesService) {}
 
@@ -21,20 +23,16 @@ export class UserProfilePage implements OnInit {
     this.photoURL = this.authService.getCurrentPhotoURL();
   }
 
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.selectedImage = input.files[0];
-    } else {
-      this.selectedImage = null;
-    }
+  async editarNombre() {
+    this.showInput = true;
   }
 
-  async editarNombre() {
-    const newName = prompt('Ingrese un nuevo nombre');
-    if (newName !== null && newName !== '') {
-      await this.authService.updateName(newName);
-      this.displayName = newName;
+  async guardarNombre() {
+    if (this.nuevoNombre !== null && this.nuevoNombre !== '') {
+      await this.authService.updateName(this.nuevoNombre);
+      this.displayName = this.nuevoNombre;
+      this.nuevoNombre = '';
+      this.showInput = false;
     }
   }
 
@@ -53,5 +51,4 @@ export class UserProfilePage implements OnInit {
     });
     input.click();
   }
-
 }

@@ -10,7 +10,15 @@
   <ion-card>
     <img src="{{ photoURL }}" alt="Imagen de Perfil">
     <ion-card-header>
-      <ion-card-title>{{ displayName }}</ion-card-title>
+      <ng-container *ngIf="!showInput; else editName">
+        <ion-card-title (click)="showInput = true">{{ displayName }}</ion-card-title>
+      </ng-container>
+      <ng-template #editName>
+        <ion-item>
+          <ion-input [(ngModel)]="nuevoNombre" placeholder="Nuevo Nombre"></ion-input>
+          <ion-button slot="end" (click)="guardarNombre()">Guardar</ion-button>
+        </ion-item>
+      </ng-template>
       <ion-card-subtitle>{{ email }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
