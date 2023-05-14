@@ -53,7 +53,7 @@ export class DetailsPage implements OnInit{
 
   async loadContent(){
     this.meme = await this.firestoreService.getMemeById(this.id);
-    this.comments = await this.firestoreService.getMemeCommentsById(this.id);
+    this.comments = (await this.firestoreService.getMemeCommentsById(this.id)).reverse();
   }
 
   submit(option:boolean){
@@ -63,7 +63,7 @@ export class DetailsPage implements OnInit{
       const comment: Comment = {
         //Cambiar el owner
         owner:this.displayName,
-        idComment:this.email+Date.now(),
+        idComment:Date.now()+this.email,
         content:this.commentControl.value as string,
         idMeme:this.id,
         like:[],
@@ -72,7 +72,7 @@ export class DetailsPage implements OnInit{
         imageOwner:this.authService.getCurrentPhotoURL()
       };
       this.firestoreService.addComment(this.id,comment,comment.idComment).then(async done =>{
-        if(done) this.comments = await this.firestoreService.getMemeCommentsById(this.id);
+        if(done) this.comments = (await this.firestoreService.getMemeCommentsById(this.id)).reverse();
       });
     }
     this.commentControl.reset();

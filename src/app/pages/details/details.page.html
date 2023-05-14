@@ -1,17 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title *ngIf="meme!==undefined">Meme {{meme.id}}</ion-title>
-    <ion-title *ngIf="meme===undefined" size="large">Details Page</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title *ngIf="meme!==undefined" size="large">Meme {{meme.id}}</ion-title>
-      <ion-title *ngIf="meme===undefined" size="large">Details Page</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
   <div id="container">
 

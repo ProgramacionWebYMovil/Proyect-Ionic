@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -6,14 +6,23 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
-  isUserLoggedIn = this.authentication.isLoggedInUser();
+export class HeaderComponent implements OnInit{
+  uid:string = "";
   showUserOptions = false;
+  photoURL :string = "";
 
   constructor(
     private authentication:AuthenticationService
   ) {
 
+  }
+  ngOnInit(): void {
+    this.authentication.getCurrentUid().subscribe(data => {
+      this.uid = data;
+      if(data !== undefined){
+        this.photoURL = this.authentication.getCurrentPhotoURL();
+      }
+    });
   }
 
   toggleUserOptions() {
@@ -22,6 +31,7 @@ export class HeaderComponent {
 
   logOut(){
     this.authentication.logOut();
+    this.photoURL = "";
   }
 }
 

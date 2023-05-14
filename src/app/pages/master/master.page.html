@@ -1,20 +1,10 @@
-<ion-header [translucent]="true">
-  <router-outlet name="header"></router-outlet>
-  <ion-toolbar>
-    <ion-title>master</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Master</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <h1>Our memes</h1>
-  <section id="memes">
-      <app-card *ngFor="let meme of memes" [meme]="meme"></app-card>
-  </section>
+  <div id="container">
+    <h1>Our memes</h1>
+    <section id="memes">
+        <app-card *ngFor="let meme of memes" [meme]="meme"></app-card>
+    </section>
+  
+  </div>
 
 </ion-content>
