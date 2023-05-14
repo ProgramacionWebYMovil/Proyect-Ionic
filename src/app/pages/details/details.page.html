@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title *ngIf="meme!==undefined">Meme {{meme.id}}</ion-title>
+    <ion-title *ngIf="meme===undefined" size="large">Details Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title *ngIf="meme!==undefined" size="large">Meme {{meme.id}}</ion-title>
+      <ion-title *ngIf="meme===undefined" size="large">Details Page</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+
+
+    <section *ngIf="meme!==undefined">
+        <div id="title">
+          <h1>{{meme.title}}</h1>
+          <button><ion-icon name="star-outline"></ion-icon></button>
+        </div>
+        <img [src]="meme.url">
+    </section>
+  </div>
+
+  <section id="commentsSection">
+    <section class="formComment" *ngIf="uid!==undefined">
+      <form>
+        <div id="headerForm">
+          <ion-avatar>
+            <img [src]="photoURL">
+          </ion-avatar>
+          <!-- Hay que poner el nombre del usuario -->
+          <p>Comment as {{displayName}}</p>
+        </div>
+        <ion-textarea placeholder="Leave a comment" fill="outline" [formControl]="commentControl"></ion-textarea>
+        <ion-button [disabled]="!commentControl.valid" (click)="submit(true)">COMMENT</ion-button>
+        <ion-button (click)="submit(false)">CANCEL</ion-button>
+      </form>
+    </section>
+
+    <section id="formEmpty" *ngIf="uid===undefined">
+      <h3>Account Required</h3>
+      <p>Please <a routerLink="/authentication">Log In</a> or <a routerLink="/authentication">Create Acount</a> to comment</p>
+    </section>
+
+    <section id="commentSection">
+      <app-comment *ngFor="let comment of comments" [currentUser]="email" [comment]="comment"></app-comment>
+    </section>
+  </section>
+  
+</ion-content>

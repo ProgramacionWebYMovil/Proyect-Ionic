@@ -1,0 +1,80 @@
+#down{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    p{
+        margin: 0;
+    }
+    button{
+        background-color: transparent;
+    }
+
+    #like{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .buttonsLike {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        p{
+            font-size: 1em;
+        }
+    }
+
+    .buttonsLike:first-child{
+        margin-right: 1em;
+    }
+
+    ion-icon {
+        height: 30px;
+        width: 30px;
+        margin-left: 1em;
+    }
+}
+
+.comment{
+    margin: 1em;
+    padding: 1em;
+    background-color: #50126b;
+    border-radius: 4px;
+    border:solid #100E40 2px;
+}
+
+.headerComment{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    h2 {
+        margin: 0;
+    }
+
+    ion-avatar{
+        height: 30px;
+        width: 30px;
+        margin-right: 1em;
+    }
+}
+
+
+@media screen and (max-width:500px) {
+    #down{
+        flex-direction: column;
+
+        p:first-child{
+            justify-content: flex-start;
+            width: 100%;
+        }
+    }
+
+
+    #like{
+        justify-content: space-between;
+        margin-top: 1em;
+        width: 100%;
+    }
+}

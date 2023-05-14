@@ -1,33 +1,19 @@
 <ion-header [translucent]="true">
+  <router-outlet name="header"></router-outlet>
   <ion-toolbar>
     <ion-title>user-authentication</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">user-authentication</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <form [formGroup]="form" (submit)="onSubmit()">
-    <input type="file" name="userImag">
-    <label for="name">
-      <h2>Name</h2>
-      <input neme="name" type="text" formControlName="name">
-    </label>
-    <label for="email">
-      <h2>Email</h2>
-      <input name="email" type="email" formControlName="email">
-    </label>
-    <label for="password">
-      <h2>Password</h2>
-      <input name="password" type="password" formControlName="password">
-    </label>
-    <label for="passwordRepeat">
-      <h2>Repeat Password</h2>
-      <input name="passwordRepeat" type="password" formControlName="passwordRepeat">
-    </label>
-    <input type="submit" value="Confirm">
-  </form>
+  <div id="grid-content">
+    <ng-container *ngIf="isLogin;else signup">
+      <app-login-form id="form"></app-login-form>
+    </ng-container>
+    <ng-template #signup>
+      <app-signup-form id="form" ></app-signup-form>
+    </ng-template>
+
+    <p id="ask">If you already have an account, <a (click)="changeMode()">login here.</a></p>
+  </div>
 </ion-content>

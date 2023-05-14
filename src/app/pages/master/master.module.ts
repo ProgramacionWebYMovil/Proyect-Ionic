@@ -10,6 +10,7 @@ import { MasterPage } from './master.page';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CardComponent } from '../../components/card/card.component';
 
+
 @NgModule({
   imports: [
     CommonModule,

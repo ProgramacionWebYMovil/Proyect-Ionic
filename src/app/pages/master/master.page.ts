@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Meme } from 'src/app/intefaces/meme';
+import { Meme } from 'src/app/interfaces/meme';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-master',
   templateUrl: './master.page.html',
-  styleUrls: ['./master.page.scss'],
+  styleUrls: ['./master.page.scss']
 })
 export class MasterPage implements OnInit {
 
@@ -15,14 +15,13 @@ export class MasterPage implements OnInit {
 
   ngOnInit() {
     this.loadContent();
-    
-    
+
+
   }
 
   async loadContent(){
     const memesPromise:Promise<Meme[]> = this.firestoreService.readMemes();
     this.memes = await memesPromise;
-    console.log(this.memes);
   }
 
 }

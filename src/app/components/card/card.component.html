@@ -1,6 +1,7 @@
 <ion-card>
-  <img [src]="meme.url" />
+  <img [routerLink]="['/details/'+meme.id]" [src]="meme.url"/>
   <ion-card-header>
-    <ion-card-title>{{meme.title}}</ion-card-title>
+    <ion-card-title [routerLink]="['/details/'+meme.id]">{{meme.title}}</ion-card-title>
+    <button><ion-icon name="star-outline"></ion-icon></button>
   </ion-card-header>
 </ion-card>

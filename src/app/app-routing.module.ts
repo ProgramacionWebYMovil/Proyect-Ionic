@@ -5,7 +5,8 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'master',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    outlet: 'header'
   },
   {
     path: 'master',
@@ -14,9 +15,10 @@ const routes: Routes = [
   {
     path: 'authentication',
     loadChildren: () => import('./pages/user-authentication/user-authentication.module').then( m => m.UserAuthenticationPageModule)
-  },  {
-    path: 'user-profile',
-    loadChildren: () => import('./user-profile/user-profile.module').then( m => m.UserProfilePageModule)
+  },
+  {
+    path: 'details/:id',
+    loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
   },
 
 ];

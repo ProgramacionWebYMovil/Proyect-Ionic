@@ -1,0 +1,33 @@
+
+<section class="comment">
+  <div class="headerComment">
+    <ion-avatar>
+      <img [src]="comment.imageOwner">
+    </ion-avatar>
+    
+    <h2>{{comment.owner}}</h2>
+  </div>
+  
+  <p>{{comment.content}}</p>
+  <div id="down">
+    <p>{{comment.date | date:'short' }}</p>
+    <div id="like">
+      <div class="buttonsLike">
+        <p>{{comment.like.length}}</p>
+        <button (click)="like()">
+          <ion-icon [ngStyle]="{'color':comment.like.indexOf(currentUser)!==-1?'yellow':'white'}" 
+            name="thumbs-up-sharp"></ion-icon>
+        </button>
+      </div>
+      <div class="buttonsLike">
+        <p>{{comment.dislike.length}}</p>
+        <button (click)="dislike()">
+          <ion-icon [ngStyle]="{'color':comment.dislike.indexOf(currentUser)!==-1?'yellow':'white'}" 
+            name="thumbs-down-sharp"></ion-icon>
+        </button>
+      </div>
+
+      
+    </div>
+  </div>
+</section>
