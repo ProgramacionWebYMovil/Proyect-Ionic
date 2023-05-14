@@ -5,8 +5,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'master',
-    pathMatch: 'full',
-    outlet: 'header'
+    pathMatch: 'full'
   },
   {
     path: 'master',

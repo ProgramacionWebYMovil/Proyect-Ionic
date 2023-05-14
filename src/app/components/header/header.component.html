@@ -1,33 +1,35 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button routerLink="/home">
-        <ion-icon name="home-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>
-      BrandName
-      <ion-label class="master-title" routerLink="/master">Master</ion-label>
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="toggleUserOptions()">
-        <div>
-          <ion-icon *ngIf="photoURL.length===0" name="person"></ion-icon>
-          <ion-avatar>
-            <img [src]="photoURL">
-          </ion-avatar>
-        </div>
+  <ion-menu contentId="menu" side="end" menuId="menu" (ionWillClose)="prueba()">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title id="titleMenu">Navigation</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <div class="menu-items">
+        <ion-button *ngIf="uid===undefined" [routerLink]="['/authentication']">Authenticate</ion-button>
+        <ion-button *ngIf="uid!==undefined">My Favourites</ion-button>
+        <ion-button *ngIf="uid!==undefined">My Profile</ion-button>
+        <ion-button (click)="logOut()" *ngIf="uid!==undefined">Log Out</ion-button>
+      </div>
+    </ion-content>
+  </ion-menu>
 
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
 
-  <div class="menu-wrapper" [class.visible]="showUserOptions">
-    <div class="menu-items">
-      <ion-button *ngIf="uid===''" [routerLink]="['/authentication']">Authenticate</ion-button>
-      <ion-button *ngIf="uid!==''">My Favourites</ion-button>
-      <ion-button *ngIf="uid!==''">My Profile</ion-button>
-      <ion-button (click)="logOut();toggleUserOptions()" *ngIf="uid!==''">Log Out</ion-button>
-    </div>
-  </div>
-</ion-header>
+  <div class="ion-page" id="menu">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-menu-button (click)="actionMenu()">
+            <div>
+              <ion-icon *ngIf="photoURL===''" name="person"></ion-icon>
+              <ion-avatar *ngIf="photoURL!==''">
+                <img [src]="photoURL">
+              </ion-avatar>
+            </div>
+          </ion-menu-button>
+        </ion-buttons>
+        <button [routerLink]="['/master']" id="buttonTitle" >
+          <ion-title id="titleHeader">Brand Name</ion-title>
+        </button>
+      </ion-toolbar>
+    </ion-header>

@@ -14,12 +14,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { ComponentsModule } from './components/components.module';
 
-import { HeaderComponent } from './components/header/header.component';
+
 
 
 @NgModule({
-  declarations: [AppComponent,  HeaderComponent],
+  declarations: [AppComponent],
   imports:
   [
     BrowserModule,
@@ -31,7 +32,8 @@ import { HeaderComponent } from './components/header/header.component';
     FormsModule,
     ReactiveFormsModule,
     provideStorage(() => getStorage()),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ComponentsModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
