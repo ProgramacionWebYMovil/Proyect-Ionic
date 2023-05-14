@@ -24,10 +24,10 @@
 
   <div class="menu-wrapper" [class.visible]="showUserOptions">
     <div class="menu-items">
-      <ion-button *ngIf="uid===''" [routerLink]="['/authentication']">Authenticate</ion-button>
-      <ion-button *ngIf="uid!==''">My Favourites</ion-button>
-      <ion-button *ngIf="uid!==''">My Profile</ion-button>
-      <ion-button (click)="logOut();toggleUserOptions()" *ngIf="uid!==''">Log Out</ion-button>
+      <ion-button *ngIf="(isUserLoggedIn | async)===false" [routerLink]="['/authentication']">Authenticate</ion-button>
+      <ion-button *ngIf="isUserLoggedIn | async">My Favourites</ion-button>
+      <ion-button *ngIf="isUserLoggedIn | async" [routerLink]="['/profile']">My Profile</ion-button>
+      <ion-button (click)="logOut();toggleUserOptions()" *ngIf="isUserLoggedIn | async">Log Out</ion-button>
     </div>
   </div>
 </ion-header>

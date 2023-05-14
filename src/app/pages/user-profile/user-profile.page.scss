@@ -1,0 +1,22 @@
+ion-card-header {
+  margin-top: 1em;
+}
+
+ion-card-content  {
+  margin-top: 1em;
+}
+
+img {
+  z-index: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  margin: 1em auto 0 auto;
+}
+
+ion-button {
+  --background: #fff300;
+  --color: #50126b;
+}
