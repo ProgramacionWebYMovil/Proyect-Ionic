@@ -9,6 +9,8 @@ import { MasterPageRoutingModule } from './master-routing.module';
 import { MasterPage } from './master.page';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CardComponent } from '../../components/card/card.component';
+import { ComponentsModule } from 'src/app/components/components.module';
+import { HeaderComponent } from 'src/app/components/header/header.component';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { CardComponent } from '../../components/card/card.component';
     FormsModule,
     IonicModule,
     MasterPageRoutingModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ComponentsModule
   ],
   declarations: [
     MasterPage,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { RouterLink } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-header',
@@ -11,12 +13,30 @@ export class HeaderComponent implements OnInit{
   showUserOptions = false;
   photoURL :string = "";
 
+  isMenuOpened:boolean = false;
+
   constructor(
-    private authentication:AuthenticationService
+    private authentication:AuthenticationService,
+    private menu: MenuController
   ) {
 
   }
+
+
+  actionMenu(){
+    console.log("Hola");
+  }
+
+  ionViewWillLeave(){
+    console.log("Me voy");
+  }
+
+  prueba(){
+    console.log("Me cierroo")
+  }
+
   ngOnInit(): void {
+    this.menu.enable(true,'menu');
     this.authentication.getCurrentUid().subscribe(data => {
       this.uid = data;
       if(data !== undefined){
