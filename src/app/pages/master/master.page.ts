@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Meme } from 'src/app/interfaces/meme';
 import { FirestoreService } from 'src/app/services/firestore.service';
+import { SqliteStorageService } from 'src/app/services/sqlite-storage.service';
 
 @Component({
   selector: 'app-master',
@@ -11,12 +12,10 @@ export class MasterPage implements OnInit {
 
   memes!:Meme[];
 
-  constructor(private firestoreService:FirestoreService) { }
+  constructor(private firestoreService:FirestoreService,private sqliteService:SqliteStorageService) { }
 
   ngOnInit() {
     this.loadContent();
-
-
   }
 
   async loadContent(){

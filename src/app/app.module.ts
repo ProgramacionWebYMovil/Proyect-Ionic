@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 
 import { HeaderComponent } from './components/header/header.component';
+import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { HeaderComponent } from './components/header/header.component';
     provideStorage(() => getStorage()),
     BrowserAnimationsModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy, } , SQLite],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

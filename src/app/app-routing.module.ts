@@ -6,7 +6,6 @@ const routes: Routes = [
     path: '',
     redirectTo: 'master',
     pathMatch: 'full',
-    outlet: 'header'
   },
   {
     path: 'master',
@@ -20,6 +19,11 @@ const routes: Routes = [
     path: 'details/:id',
     loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
   },
+  {
+    path: 'favs',
+    loadChildren: () => import('./pages/favs/favs.module').then( m => m.FavsPageModule)
+  },
+
 
 ];
 

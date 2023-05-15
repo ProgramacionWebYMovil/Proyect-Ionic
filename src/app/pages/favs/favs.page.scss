@@ -1,0 +1,21 @@
+#memes{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#container{
+  margin-top: 80px;
+}
+
+h1{
+  margin-left: 1em;
+}
+
+
+@media screen and (max-width:762px) {
+  app-card{
+      margin: 0 1em 0 1em;
+      width: 100%;
+  }
+}
