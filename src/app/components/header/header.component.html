@@ -1,35 +1,37 @@
-  <ion-menu contentId="menu" side="end" menuId="menu" (ionWillClose)="prueba()">
-    <ion-header>
+  <ion-header>
+    <ion-menu contentId="menu" side="end" menuId="menu">
       <ion-toolbar>
         <ion-title id="titleMenu">Navigation</ion-title>
       </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <div class="menu-items">
-        <ion-button *ngIf="uid===undefined" [routerLink]="['/authentication']">Authenticate</ion-button>
+      <ion-content class="menu-items">
+        <ion-button *ngIf="uid===undefined" (click)="closeMenu()" [routerLink]="['/authentication']">Authenticate</ion-button>
         <ion-button *ngIf="uid!==undefined">My Favourites</ion-button>
         <ion-button *ngIf="uid!==undefined" [routerLink]="['/profile']" >My Profile</ion-button>
         <ion-button (click)="logOut()" *ngIf="uid!==undefined">Log Out</ion-button>
-      </div>
-    </ion-content>
-  </ion-menu>
+      </ion-content>
+    </ion-menu>
+
+    <div id="menu">
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-menu-button>
+              <div>
+                <ion-icon *ngIf="photoURL===''" name="person"></ion-icon>
+                <ion-avatar *ngIf="photoURL!==''">
+                  <img [src]="photoURL">
+                </ion-avatar>
+              </div>
+            </ion-menu-button>
+          </ion-buttons>
+          <button [routerLink]="['/master']" id="buttonTitle" >
+            <ion-title id="titleHeader">Brand Name</ion-title>
+          </button>
+        </ion-toolbar>
+    </div>
+
+  </ion-header>
+  
 
 
-  <div class="ion-page" id="menu">
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="end">
-          <ion-menu-button (click)="actionMenu()">
-            <div>
-              <ion-icon *ngIf="photoURL===''" name="person"></ion-icon>
-              <ion-avatar *ngIf="photoURL!==''">
-                <img [src]="photoURL">
-              </ion-avatar>
-            </div>
-          </ion-menu-button>
-        </ion-buttons>
-        <button [routerLink]="['/master']" id="buttonTitle" >
-          <ion-title id="titleHeader">Brand Name</ion-title>
-        </button>
-      </ion-toolbar>
-</ion-header>
+
+  

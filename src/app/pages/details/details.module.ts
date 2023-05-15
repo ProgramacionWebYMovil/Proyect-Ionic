@@ -9,7 +9,6 @@ import { DetailsPageRoutingModule } from './details-routing.module';
 import { DetailsPage } from './details.page';
 import { DatePipe } from '@angular/common';
 import { CommentComponent } from 'src/app/components/comment/comment.component';
-import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -17,8 +16,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     DetailsPageRoutingModule,
-    ReactiveFormsModule,
-    ComponentsModule
+    ReactiveFormsModule
   ],
   declarations: [DetailsPage, CommentComponent],
   providers:[DatePipe]
