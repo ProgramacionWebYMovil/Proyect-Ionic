@@ -23,15 +23,21 @@
               </div>
             </ion-menu-button>
           </ion-buttons>
-          <button [routerLink]="['/master']" id="buttonTitle" >
-            <ion-title id="titleHeader">Brand Name</ion-title>
-          </button>
+
+          <div class="button-label-container">
+            <ion-button routerLink="/home" id="brand_full">
+              <img id="brand_logo" src="../../../assets/logo/logo.png">
+              <ion-title id="brand_name">MemeZone</ion-title>
+            </ion-button>
+            <ion-label id="discover" [routerLink]="['/master']">Discover Memes</ion-label>
+          </div>
+
         </ion-toolbar>
     </div>
 
   </ion-header>
-  
 
 
 
-  
+
+
