@@ -13,6 +13,7 @@ ion-card{
         -webkit-box-orient: vertical;
         padding-bottom: auto;
         cursor: pointer;
+        --color:white;
     }
     ion-card-header {
         display: flex;
@@ -26,13 +27,19 @@ ion-card{
             border:none;
             background-color: transparent;
             margin-left: 2em;
-            ion-icon{
-                font-size: 2em;
+
+            ion-icon {
+                width: 2em;
+                height: 2em;
             }
+
         }
     }
     width: 350px;   
 }
+
+
+
 
 
 

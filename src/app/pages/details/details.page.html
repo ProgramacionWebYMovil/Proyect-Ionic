@@ -5,7 +5,12 @@
     <section *ngIf="meme!==undefined">
         <div id="title">
           <h1>{{meme.title}}</h1>
-          <button><ion-icon name="star-outline"></ion-icon></button>
+          <button (click)="toFav()">
+            <ion-icon 
+            [name]="favorite ? 'star':'star-outline'"
+            [ngStyle]="favorite ? {'fill':'yellow'} : {}"
+            ></ion-icon>
+          </button>
         </div>
         <img [src]="meme.url">
     </section>

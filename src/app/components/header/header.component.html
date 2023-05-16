@@ -16,9 +16,9 @@
           <ion-buttons slot="end">
             <ion-menu-button>
               <div>
-                <ion-icon *ngIf="photoURL===''" name="person"></ion-icon>
-                <ion-avatar *ngIf="photoURL!==''">
-                  <img [src]="photoURL">
+                <ion-icon *ngIf="uid===undefined" name="person"></ion-icon>
+                <ion-avatar *ngIf="uid!==undefined">
+                  <img [src]="photoURL | async">
                 </ion-avatar>
               </div>
             </ion-menu-button>

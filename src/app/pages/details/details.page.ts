@@ -22,6 +22,7 @@ export class DetailsPage implements OnInit{
   email!:string;
 
   commentControl = new FormControl('',Validators.required);
+  favorite : boolean = false;
 
 
   constructor(
@@ -30,6 +31,10 @@ export class DetailsPage implements OnInit{
     private authService:AuthenticationService
     ) {
 
+  }
+
+  toFav(){
+    this.favorite = !this.favorite;
   }
 
   async ngOnInit() {

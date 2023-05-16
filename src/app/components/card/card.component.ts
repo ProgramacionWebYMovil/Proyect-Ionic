@@ -9,9 +9,15 @@ import { Meme } from 'src/app/interfaces/meme';
 export class CardComponent  implements OnInit {
 
   @Input() meme!:Meme;
+  favorite:boolean = false;
 
   constructor() { }
 
   ngOnInit() {}
+
+  toFav(){
+    console.log("Hola");
+    this.favorite = !this.favorite;
+  }
 
 }

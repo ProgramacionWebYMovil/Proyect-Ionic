@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage,ref,uploadBytes, getDownloadURL, listAll, deleteObject } from '@angular/fire/storage';
-import { Subject } from 'rxjs';
+import { Observable, Subject, Subscriber } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
 
 
@@ -18,6 +18,12 @@ export class StorageImagesService {
     private auth:AuthenticationService
   ) {
     this.auth.getCurrentUid().subscribe(data => this.IMAGE_STORAGE = `userImages/${data}/`);
+  }
+
+  photoURLObservable(): Observable<string>{
+    return new Observable(suscriber => {
+      
+    });
   }
 
   async onFileUpload(file:File): Promise<string> {

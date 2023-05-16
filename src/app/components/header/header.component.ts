@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { RouterLink } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import { MenuController } from '@ionic/angular';
 export class HeaderComponent implements OnInit{
   uid:string = "";
   showUserOptions = false;
-  photoURL :string = "";
+  photoURL :Subject<string> = this.authentication.getCurrentPhotoURLObservable();
 
 
   constructor(
@@ -30,9 +31,6 @@ export class HeaderComponent implements OnInit{
     this.menu.enable(true,'menu');
     this.authentication.getCurrentUid().subscribe(data => {
       this.uid = data;
-      if(data !== undefined){
-        this.photoURL = this.authentication.getCurrentPhotoURL();
-      }
     });
   }
 
@@ -42,7 +40,6 @@ export class HeaderComponent implements OnInit{
 
   logOut(){
     this.authentication.logOut();
-    this.photoURL = "";
   }
 }
 
