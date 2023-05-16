@@ -13,7 +13,6 @@ export class HeaderComponent implements OnInit{
   showUserOptions = false;
   photoURL :string = "";
 
-  isMenuOpened:boolean = false;
 
   constructor(
     private authentication:AuthenticationService,
@@ -23,16 +22,8 @@ export class HeaderComponent implements OnInit{
   }
 
 
-  actionMenu(){
-    console.log("Hola");
-  }
-
-  ionViewWillLeave(){
-    console.log("Me voy");
-  }
-
-  prueba(){
-    console.log("Me cierroo")
+  closeMenu(){
+    this.menu.close('menu');
   }
 
   ngOnInit(): void {
