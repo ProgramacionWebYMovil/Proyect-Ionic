@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit{
 
   logOut(){
     this.authentication.logOut();
+    this.closeMenu();
   }
 }
 
