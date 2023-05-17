@@ -12,13 +12,24 @@ export class CardComponent  implements OnInit {
   @Input() meme!:Meme;
   favorite:boolean = false;
 
+
   constructor(private sqliteService:SqliteStorageService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.sqliteService.databaseIsReady().subscribe(isReady => {
+      if(isReady) this.checkFav();
+    })
+  }
 
-  toFav(){
-    console.log("Hola");
-    this.favorite = !this.favorite;
+  async checkFav(){
+    
+    this.favorite = await this.sqliteService.checkIsFav(this.meme)
+  }
+
+  async toFav(meme:Meme){
+    if(this.favorite) await this.sqliteService.deleteFromFavs(meme.id).then(() => {this.checkFav();});
+    else await this.sqliteService.addToFav(meme).then(() => {this.checkFav();});
+
   }
 
 }

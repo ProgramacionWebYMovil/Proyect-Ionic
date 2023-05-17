@@ -12,7 +12,7 @@ export class MasterPage implements OnInit {
 
   memes!:Meme[];
 
-  constructor(private firestoreService:FirestoreService,private sqliteService:SqliteStorageService) { }
+  constructor(private firestoreService:FirestoreService) { }
 
   ngOnInit() {
     this.loadContent();

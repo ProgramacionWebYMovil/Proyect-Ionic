@@ -11,10 +11,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class SqliteStorageService {
 
-  private db!:SQLiteObject;
+  private db?:SQLiteObject;
   private TABLE = "favs"
   private isReady = new BehaviorSubject<boolean>(false);
   private memes = new BehaviorSubject<Meme[]>([]);
+  private memesInFav:Meme[] = []
 
 
   constructor(
@@ -24,6 +25,9 @@ export class SqliteStorageService {
     private porter:SQLitePorter
   ){
 
+    this.memes.subscribe((memes) => {
+      this.memesInFav = memes;
+    })
     this.platform.ready().then(()=>this.createDatabase());
   }
 
@@ -41,40 +45,52 @@ export class SqliteStorageService {
   private async createTable(): Promise<void>{
     this.http.get('assets/dbInit.sql',{responseType: 'text'}).subscribe(data => {
       this.porter.importSqlToDb(this.db,data).then(async () =>{
-        this.load();
+        await this.load();
         this.isReady.next(true);
-      })
+      }).catch(err => console.log(err)
+      )
     })
   }
 
   private async load(){
-    const favs = await await this.db.executeSql(
+    const favs = await this.db!.executeSql(
       `SELECT * FROM ${this.TABLE};`,
       []
     )
-    console.log(favs);
-    if(favs.rows.length != 0){
-      let newMemes:Meme[] = [];
-      for (let index = 0; index < favs.rows.length; index++) {
-        newMemes.push(favs.rows.item(index));
-      }
-      this.memes.next(newMemes);
+    let newMemes:Meme[] = [];
+    for (let index = 0; index < favs.rows.length; index++) {
+      newMemes.push(favs.rows.item(index));
     }
+    this.memes.next(newMemes);
+    this.isReady.next(true);
+
   }
 
-  async addToFav(meme:Meme): Promise<void>{
-    await this.db.executeSql(
-      `INSERT INTO ${this.TABLE} (id, title, imageUrl) VALUES (${meme.id}, ${meme.title}, ${meme.url});`
-    )
-    this.load();
+  async addToFav(meme:Meme){
+    await this.db!.executeSql(
+      `INSERT INTO ${this.TABLE} (id, title, url) VALUES (${meme.id}, '${meme.title}', '${meme.url}');`,
+      []
+    ).then(async (response) => {
+      console.log(response);
+      await this.load()
+    })
+    .catch((error) => {
+      console.error('Error al ejecutar la consulta SQL:', error);
+    });
   }
 
   async deleteFromFavs(id:number){
-    await this.db.executeSql(
-      `DELETE FROM memes WHERE id = ${id};`,
+    await this.db!.executeSql(
+      `DELETE FROM ${this.TABLE} WHERE id = ${id};`,
       []
     )
-    this.load();
+    .then(async (response) => {
+      console.log(response);
+      await this.load();
+    })
+    .catch((Err) => {console.log(Err);
+    })
+
   }
 
   databaseIsReady():Observable<boolean>{
@@ -85,5 +101,11 @@ export class SqliteStorageService {
     return this.memes.asObservable();
   }
 
+  async checkIsFav(meme:Meme){
+    for (const favMeme of this.memesInFav) {
+      if(meme.id === favMeme.id) return true;
+    }
+    return false
+  }
 
 }

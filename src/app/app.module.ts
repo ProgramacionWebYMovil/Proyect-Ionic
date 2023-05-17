@@ -17,6 +17,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 import {SQLitePorter} from '@awesome-cordova-plugins/sqlite-porter/ngx'
 import { HttpClientModule } from '@angular/common/http';
+import { SqliteStorageService } from './services/sqlite-storage.service';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy, } , SQLite, SQLitePorter],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy, } , SQLite, SQLitePorter,SqliteStorageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

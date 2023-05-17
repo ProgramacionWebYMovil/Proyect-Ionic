@@ -10,7 +10,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "a": "ionic capacitor run android -l --external"
+    "a":"ionic capacitor run android",
+    "a -l": "ionic capacitor run android -l --external"
   },
   "private": true,
   "dependencies": {

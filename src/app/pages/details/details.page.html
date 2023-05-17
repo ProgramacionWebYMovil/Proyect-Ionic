@@ -5,8 +5,8 @@
     <section *ngIf="meme!==undefined">
         <div id="title">
           <h1>{{meme.title}}</h1>
-          <button (click)="toFav()">
-            <ion-icon 
+          <button (click)="toFav(meme)">
+            <ion-icon
             [name]="favorite ? 'star':'star-outline'"
             [ngStyle]="favorite ? {'fill':'yellow'} : {}"
             ></ion-icon>
@@ -41,5 +41,5 @@
       <app-comment *ngFor="let comment of comments" [currentUser]="email" [comment]="comment"></app-comment>
     </section>
   </section>
-  
+
 </ion-content>

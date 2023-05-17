@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Meme } from 'src/app/interfaces/meme';
 import { SqliteStorageService } from 'src/app/services/sqlite-storage.service';
 
@@ -12,11 +11,13 @@ export class FavsPage implements OnInit {
 
   constructor(private sqlite:SqliteStorageService) { }
 
-  memes:Observable<Meme[]> = this.sqlite.getFavs();
+  memes:Meme[] = [];
 
 
   ngOnInit() {
-
+    this.sqlite.getFavs().subscribe(data => {
+      this.memes = data;
+    })
   }
 
 

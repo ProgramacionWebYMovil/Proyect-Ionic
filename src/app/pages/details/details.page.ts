@@ -5,6 +5,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { Comment } from 'src/app/interfaces/comment';
 import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { SqliteStorageService } from 'src/app/services/sqlite-storage.service';
 
 @Component({
   selector: 'app-details',
@@ -28,18 +29,19 @@ export class DetailsPage implements OnInit{
   constructor(
     private firestoreService:FirestoreService,
     private activatedRoute:ActivatedRoute,
-    private authService:AuthenticationService
+    private authService:AuthenticationService,
+    private sqliteService:SqliteStorageService
     ) {
 
   }
 
-  toFav(){
-    this.favorite = !this.favorite;
-  }
+
 
   async ngOnInit() {
+
+
     this.id = this.activatedRoute.snapshot.params['id'];
-    this.loadContent();
+    await this.loadContent();
     this.authService.getCurrentUid().subscribe(data => {
       this.uid = data;
       if(data !== undefined){
@@ -48,8 +50,21 @@ export class DetailsPage implements OnInit{
         this.email = this.authService.getCurrentEmail();
       }
     });
-    
-    
+
+    this.sqliteService.databaseIsReady().subscribe(isReady => {
+      if(isReady) this.checkFav();
+    })
+
+
+  }
+
+  private async checkFav(){
+    this.favorite = await this.sqliteService.checkIsFav(this.meme)
+  }
+
+  async toFav(meme:Meme){
+    if(this.favorite) await this.sqliteService.deleteFromFavs(meme.id).then(() => {this.checkFav();});
+    else await this.sqliteService.addToFav(meme).then(() => {this.checkFav();});
   }
 
 
@@ -64,7 +79,7 @@ export class DetailsPage implements OnInit{
   submit(option:boolean){
 
     if(option && this.uid!==undefined){
-      
+
       const comment: Comment = {
         //Cambiar el owner
         owner:this.displayName,
