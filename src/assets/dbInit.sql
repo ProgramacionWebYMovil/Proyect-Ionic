@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS favs(
+  id INTEGER PRIMARY KEY,
+  title TEXT,
+  imageUrl TEXT
+);

@@ -5,7 +5,7 @@
       </ion-toolbar>
       <ion-content class="menu-items">
         <ion-button *ngIf="uid===undefined" (click)="closeMenu()" [routerLink]="['/authentication']">Authenticate</ion-button>
-        <ion-button *ngIf="uid!==undefined">My Favourites</ion-button>
+        <ion-button  *ngIf="uid!==undefined" [routerLink]="['/favs']">My Favourites</ion-button>
         <ion-button *ngIf="uid!==undefined" [routerLink]="['/profile']" >My Profile</ion-button>
         <ion-button (click)="logOut()" *ngIf="uid!==undefined">Log Out</ion-button>
       </ion-content>
@@ -30,8 +30,8 @@
     </div>
 
   </ion-header>
-  
 
 
 
-  
+
+

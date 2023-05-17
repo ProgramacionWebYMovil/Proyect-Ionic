@@ -1,8 +1,8 @@
 <ion-content [fullscreen]="true">
   <div id="container">
-    <h1>Our memes</h1>
+    <h1>Your favorites</h1>
     <section id="memes">
-        <!-- <app-card *ngFor="let meme of memes" [meme]="meme"></app-card> -->
+        <app-card *ngFor="let meme of memes | async" [meme]="meme"></app-card>
     </section>
 
   </div>

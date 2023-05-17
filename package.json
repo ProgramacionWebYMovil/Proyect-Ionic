@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "a": "ionic capacitor run android"
+    "a": "ionic capacitor run android -l --external"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +26,7 @@
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
     "@awesome-cordova-plugins/sqlite": "^6.3.0",
+    "@awesome-cordova-plugins/sqlite-porter": "^6.3.0",
     "@capacitor/android": "5.0.1",
     "@capacitor/app": "5.0.1",
     "@capacitor/core": "5.0.1",
@@ -35,6 +36,7 @@
     "@ionic/angular": "^7.0.0",
     "@ionic/storage": "^3.0.6",
     "@ionic/storage-angular": "^3.0.6",
+    "adb": "^0.2.0",
     "cordova-sqlite-storage": "^6.1.0",
     "firebase": "^9.21.0",
     "gradle": "^1.2.4",
@@ -42,6 +44,7 @@
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "uk.co.workingedge.cordova.plugin.sqliteporter": "^1.1.1",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
