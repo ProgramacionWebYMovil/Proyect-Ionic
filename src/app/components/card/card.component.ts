@@ -10,13 +10,15 @@ import { SqliteStorageService } from 'src/app/services/sqlite-storage.service';
 export class CardComponent  implements OnInit {
 
   @Input() meme!:Meme;
+  favorite:boolean = false;
 
   constructor(private sqliteService:SqliteStorageService) { }
 
   ngOnInit() {}
 
-  addToFav(){
-    this.sqliteService.addToFav(this.meme);
+  toFav(){
+    console.log("Hola");
+    this.favorite = !this.favorite;
   }
 
 }

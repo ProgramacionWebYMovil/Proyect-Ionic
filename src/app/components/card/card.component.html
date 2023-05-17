@@ -2,6 +2,11 @@
   <img [routerLink]="['/details/'+meme.id]" [src]="meme.url"/>
   <ion-card-header>
     <ion-card-title [routerLink]="['/details/'+meme.id]">{{meme.title}}</ion-card-title>
-    <button (click)="addToFav()"><ion-icon name="star-outline"></ion-icon></button>
+    <button (click)="toFav()">
+        <ion-icon
+          [name]="favorite ? 'star':'star-outline'"
+          [ngStyle]="favorite ? {'fill':'yellow'} : {}"
+          ></ion-icon>
+    </button>
   </ion-card-header>
 </ion-card>

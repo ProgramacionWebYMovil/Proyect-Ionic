@@ -1,3 +1,41 @@
+.button-label-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0.5em 0 0.5em;
+}
+
+#brand_full{
+  font-size: 1.2em;
+  font-weight: bold;
+  display: inline-flex;
+  justify-content: start;
+  align-items: center;
+  --background:none;
+  --box-shadow:0;
+  --padding-start: 0.1em;
+  --padding-end: 0em;
+}
+
+#brand_logo{
+    width: 22px;
+    height: 22px;
+}
+
+#brand_name {
+    font-family: Permanent Marker;
+    color: #fff300;
+    font-size: 1em;
+    padding:0;
+}
+
+#discover{
+  text-decoration-line: underline;
+  text-decoration-color: yellow;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 0.2em;
+}
+
 ion-avatar{
     width: 30px;
     height: 30px;
@@ -26,4 +64,5 @@ ion-header{
 ion-menu{
     position:fixed;
 }
+
 

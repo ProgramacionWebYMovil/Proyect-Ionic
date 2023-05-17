@@ -63,7 +63,8 @@ export class SignupFormComponent  implements OnInit {
       this.authenticationSearvice.registerUserEmail(userData.name!,userData.email!,userData.password!)
       .then(async response => {
         if(response){
-          this.uploadImageService.onFileUpload(this.imgFile!).then(url =>this.authenticationSearvice.updatePhotoURL(url));
+          await this.uploadImageService.onFileUpload(this.imgFile!)
+          .then( async url => await this.authenticationSearvice.updatePhotoURL(url));
           this.router.navigate(['/master']);
         }else this.setOpen(true,this.errorTexts.ERROR_REPEAT_EMAIL)
       })

@@ -5,8 +5,8 @@
       </ion-toolbar>
       <ion-content class="menu-items">
         <ion-button *ngIf="uid===undefined" (click)="closeMenu()" [routerLink]="['/authentication']">Authenticate</ion-button>
-        <ion-button  *ngIf="uid!==undefined" [routerLink]="['/favs']">My Favourites</ion-button>
-        <ion-button *ngIf="uid!==undefined" [routerLink]="['/profile']" >My Profile</ion-button>
+        <ion-button *ngIf="uid!==undefined" (click)="closeMenu()" [routerLink]="['/favs']">My Favourites</ion-button>
+        <ion-button *ngIf="uid!==undefined" (click)="closeMenu()" [routerLink]="['/profile']" >My Profile</ion-button>
         <ion-button (click)="logOut()" *ngIf="uid!==undefined">Log Out</ion-button>
       </ion-content>
     </ion-menu>
@@ -16,16 +16,22 @@
           <ion-buttons slot="end">
             <ion-menu-button>
               <div>
-                <ion-icon *ngIf="photoURL===''" name="person"></ion-icon>
-                <ion-avatar *ngIf="photoURL!==''">
-                  <img [src]="photoURL">
+                <ion-icon *ngIf="uid===undefined" name="person"></ion-icon>
+                <ion-avatar *ngIf="uid!==undefined">
+                  <img [src]="photoURL | async">
                 </ion-avatar>
               </div>
             </ion-menu-button>
           </ion-buttons>
-          <button [routerLink]="['/master']" id="buttonTitle" >
-            <ion-title id="titleHeader">Brand Name</ion-title>
-          </button>
+
+          <div class="button-label-container">
+            <ion-button routerLink="/home" id="brand_full">
+              <img id="brand_logo" src="../../../assets/logo/logo.png">
+              <ion-title id="brand_name">MemeZone</ion-title>
+            </ion-button>
+            <ion-label id="discover" [routerLink]="['/master']">Discover Memes</ion-label>
+          </div>
+
         </ion-toolbar>
     </div>
 

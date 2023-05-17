@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { updateProfile } from 'firebase/auth';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
+  photoURLSubject = new Subject<string>();
 
   constructor(private auth:Auth) { }
 
@@ -56,6 +57,7 @@ export class AuthenticationService {
     return new Observable(subscriber => {
       onAuthStateChanged(this.auth, user => {
         subscriber.next(user?.uid)
+        this.photoURLSubject.next(user?.photoURL as string);
       })
     })
   }
@@ -72,16 +74,20 @@ export class AuthenticationService {
     return this.auth.currentUser?.photoURL as string;
   }
 
+  getCurrentPhotoURLObservable(): Subject<string>{
+    return this.photoURLSubject;
+  }
+
   updateName(name:string){
     updateProfile(this.auth.currentUser!, {
       displayName:name
     });
   }
 
-  updatePhotoURL(photoURL:string){
-    updateProfile(this.auth.currentUser!,{
+  async updatePhotoURL(photoURL:string){
+    await updateProfile(this.auth.currentUser!,{
       photoURL:photoURL
-    });
+    }).then( () => this.photoURLSubject.next(photoURL));
   }
 
 }
